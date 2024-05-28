@@ -10,6 +10,7 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
+google-service-account.json
 # Caches
 
 .cache
