@@ -3,15 +3,7 @@ import type { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import User from "../models/user";
 import UserVideo from "../models/userVideos";
-
-const generateRandomString = (length: number): string => {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return result;
-};
+import { generateRandomString } from "../utils/generateRandomString";
 
 export const uploadVideo = async (req: any, res: Response) => {
   try {
