@@ -4,6 +4,15 @@ import { v4 as uuidv4 } from "uuid";
 import User from "../models/user";
 import UserVideo from "../models/userVideos";
 
+const generateRandomString = (length: number): string => {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+};
+
 export const uploadVideo = async (req: any, res: Response) => {
   try {
     const { title, description } = req.body;
@@ -13,8 +22,9 @@ export const uploadVideo = async (req: any, res: Response) => {
     if (!file) {
       return res.status(400).send("No file uploaded.");
     }
+    const randomFileName = generateRandomString(12);
 
-    const blob = bucket.file(`videos/${Date.now()}_${file.name}`);
+    const blob = bucket.file(`videos/${randomFileName}`);
     const blobStream = blob.createWriteStream({
       resumable: false,
       contentType: file.mimetype,
