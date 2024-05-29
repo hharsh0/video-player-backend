@@ -13,6 +13,7 @@ export const getListing = async (req: Request, res: Response) => {
 }
 
 export const getUserInfo = async (req:any, res:Response) =>{
+    // can be made req.body to get from payload instead of token done rightnow
     const userId = req.user.id;
 
     try{
